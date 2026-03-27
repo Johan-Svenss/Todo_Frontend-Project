@@ -14,31 +14,19 @@ const Sidebar = ({isOpen, onClose}) => {
             icon: "bi-grid",
             text: "Dashboard",
             path: "/dashboard",
-            roles: ['ROLE_ADMIN'] // Only show for admin
+            roles: ['ROLE_ADMIN']
         },
         {
             icon: "bi-list-task",
             text: "Tasks",
             path: "/dashboard/tasks",
-            roles: ['ROLE_USER', 'ROLE_ADMIN'] // Show for both user and admin
-        },
-        {
-            icon: "bi-calendar3",
-            text: "Calendar",
-            path: "/dashboard/calendar",
             roles: ['ROLE_USER', 'ROLE_ADMIN']
         },
         {
             icon: "bi-people",
-            text: "Teams",
-            path: "/dashboard/teams",
-            roles: ['ROLE_ADMIN'] // Only show for admin
-        },
-        {
-            icon: "bi-graph-up",
-            text: "Reports",
-            path: "/dashboard/reports",
-            roles: ['ROLE_ADMIN'] // Only show for admin
+            text: "Users",
+            path: "/dashboard/users",
+            roles: ['ROLE_ADMIN']
         }
     ];
 
