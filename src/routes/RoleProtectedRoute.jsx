@@ -19,12 +19,10 @@ const RoleProtectedRoute = ({ children, requiredRoles = [] }) => {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    // If requiredRoles is empty, allow access to authenticated users
     if (requiredRoles.length === 0) {
         return children;
     }
 
-    // Check if user has any of the required roles
     const hasRequiredRole = requiredRoles.some(role => hasRole(role));
 
     if (!hasRequiredRole) {

@@ -15,7 +15,6 @@ const AppRoutes = () => {
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<Login />} />
 
-            {/* Dashboard route - only for admin */}
             {hasRole('ROLE_ADMIN') && (
                 <Route path="/dashboard" element={
                     <RoleProtectedRoute requiredRoles={['ROLE_ADMIN']}>
@@ -24,21 +23,18 @@ const AppRoutes = () => {
                 } />
             )}
 
-            {/* Tasks route - for both admin and user */}
             <Route path="/dashboard/tasks" element={
                 <RoleProtectedRoute requiredRoles={['ROLE_USER', 'ROLE_ADMIN']}>
                     <Task />
                 </RoleProtectedRoute>
             } />
 
-            {/* Users route - only for admin */}
             <Route path="/dashboard/users" element={
                 <RoleProtectedRoute requiredRoles={['ROLE_ADMIN']}>
                     <User />
                 </RoleProtectedRoute>
             } />
 
-            {/* Redirect non-admin users to tasks page when trying to access dashboard */}
             <Route path="/dashboard" element={
                 <Navigate to="/dashboard/tasks" replace />
             } />

@@ -22,26 +22,19 @@ export const AuthProvider = ({ children }) => {
 
         initializeAuth();
 
-        // Initialize window events only if there's a token
         let cleanup;
         if (token) {
             cleanup = initializeWindowEvents(() => {
-                // Don't need to do anything here, handleUnload will handle the logout
                 setUser(null);
                 setToken(null);
             });
         }
 
         return () => {
-            if (cleanup) {
-                cleanup();
-            }
+            if (cleanup) cleanup();
             removeWindowEvents();
         };
     }, [token]);
-
-
-
 
     const login = async (email, password) => {
         try {

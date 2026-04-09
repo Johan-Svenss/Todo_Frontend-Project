@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Sidebar.css';
@@ -44,7 +43,6 @@ const Sidebar = ({isOpen, onClose}) => {
         }
     };
 
-    // Filter navigation items based on user roles
     const filteredNavItems = navItems.filter(item =>
         item.roles.some(role => hasRole(role))
     );

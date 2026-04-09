@@ -40,14 +40,12 @@ export const authService = {
             const logoutEndpoint = `${API_URL}/auth/logout`;
 
             if (isWindowClosing) {
-                // Synchronous logout for window closing
                 const xhr = new XMLHttpRequest();
-                xhr.open('POST', logoutEndpoint, false); // false makes it synchronous
+                xhr.open('POST', logoutEndpoint, false);
                 xhr.setRequestHeader('Authorization', `Bearer ${token}`);
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send();
             } else {
-                // Asynchronous logout for normal logout
                 fetch(logoutEndpoint, {
                     method: 'POST',
                     headers: {
@@ -57,13 +55,11 @@ export const authService = {
                 });
             }
 
-            // Always clear local storage
             localStorage.removeItem(TOKEN_KEY);
             localStorage.removeItem(USER_KEY);
             return true;
         } catch (error) {
             console.error('Logout error:', error);
-            // Still remove items from localStorage even if the API call fails
             localStorage.removeItem(TOKEN_KEY);
             localStorage.removeItem(USER_KEY);
             return true;
@@ -90,64 +86,4 @@ export const authService = {
     isAuthenticated: () => {
         return !!localStorage.getItem(TOKEN_KEY);
     }
-
-
-    /*
-    login: async (email, password) => {
-        // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
-        // Simulated API response
-        if (email === 'user' && password === 'password') {
-            const response = {
-                token: "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sInN1YiI6ImFkbWluIiwiaWF0IjoxNzU0NjUyMjkyLCJleHAiOjE3NTQ3Mzg2OTJ9.EG3EfNWsthhJts1EV6-ATl_TOBkiSvWI3dGpVtiYpPrp5OB7Z1fIAYKEaV919ZO0khp7fWzFbRqOqg3dQ0X6PA",
-                type: "Bearer",
-                username: "user",
-                name: "User",
-                email: "user@test.se",
-                roles: ["ROLE_USER"]
-            };
-
-            // Store in localStorage
-            localStorage.setItem(TOKEN_KEY, response.token);
-            localStorage.setItem(USER_KEY, JSON.stringify(response));
-
-            return response;
-        }
-        throw new Error('Invalid email or password');
-    },
-
-    hasRole: (user, role) => {
-        return user?.roles?.includes(role) || false;
-    },
-
-    isAdmin: (user) => {
-        return authService.hasRole(user, 'ROLE_ADMIN');
-    },
-
-    logout: async () => {
-        try {
-            localStorage.removeItem(TOKEN_KEY);
-            localStorage.removeItem(USER_KEY);
-            return true;
-        } catch (error) {
-            console.error('Logout error:', error);
-            throw error;
-        }
-    },
-
-    getCurrentUser: () => {
-        const userStr = localStorage.getItem(USER_KEY);
-        return userStr ? JSON.parse(userStr) : null;
-    },
-
-    getToken: () => {
-        return localStorage.getItem(TOKEN_KEY);
-    },
-
-    isAuthenticated: () => {
-        return !!localStorage.getItem(TOKEN_KEY);
-    },
-
-    */
 };

@@ -16,23 +16,19 @@ export const initializeWindowEvents = (callback) => {
 
     const handleUnload = () => {
         if (shouldLogout) {
-            // Get token before clearing storage
             const token = localStorage.getItem('auth_token');
 
-            // Clear storage
             localStorage.removeItem('auth_token');
             localStorage.removeItem('auth_user');
 
-            // Make synchronous logout request if we have a token
             if (token) {
                 try {
                     const xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'http://localhost:9090/api/auth/logout', false); // Synchronous request
+                    xhr.open('POST', 'http://localhost:9090/api/auth/logout', false);
                     xhr.setRequestHeader('Authorization', `Bearer ${token}`);
                     xhr.setRequestHeader('Content-Type', 'application/json');
                     xhr.send();
                 } catch (error) {
-                    // Can't do much about errors during window closing
                     console.error('Logout error during window closing:', error);
                 }
             }

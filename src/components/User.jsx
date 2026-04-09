@@ -179,7 +179,6 @@ const User = () => {
                 </div>
             </main>
 
-            {/* Create User Modal */}
             {showCreateModal && (
                 <div className="modal show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                     <div className="modal-dialog">
@@ -269,7 +268,6 @@ const User = () => {
                 </div>
             )}
 
-            {/* Edit User Modal */}
             {editingPerson && (
                 <div className="modal show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                     <div className="modal-dialog">

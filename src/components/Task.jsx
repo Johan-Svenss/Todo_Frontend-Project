@@ -199,7 +199,6 @@ const Task = () => {
                     <div className="row">
                         <div className="col-md-8 mx-auto">
 
-                            {/* Add New Task Form */}
                             <div className="card shadow-sm task-form-section">
                                 <div className="card-body">
                                     <h2 className="card-title mb-4">Add New Task</h2>
@@ -288,7 +287,6 @@ const Task = () => {
                                 </div>
                             </div>
 
-                            {/* Task List */}
                             <div className="card shadow-sm tasks-list mt-4">
                                 <div className="card-header bg-white d-flex justify-content-between align-items-center">
                                     <h5 className="card-title mb-0">Tasks</h5>
@@ -403,7 +401,6 @@ const Task = () => {
                 </div>
             </main>
 
-            {/* Edit Task Modal */}
             {editingTask && (
                 <div className="modal show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                     <div className="modal-dialog modal-lg">
